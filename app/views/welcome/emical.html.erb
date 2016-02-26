@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<div class="row">
+   <div class="col-md-12">
+      <div class="box">
+        <div class="box-title">
+                <h3><i class="icon-reorder"></i>EMI CALCULATION</h3>
+                <div class="box-tool"> <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a> </div>
+         </div>
+         <div class="box-content frms" >
+         <form method="get">
+           <div class="form-group">
+                    
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter Loan Amount</strong></span>
+                            <input type="number" name="rate" required="true" id="rate" class="form-control" placeholder="Enter intrest rate"> </input>
+                        </div>
+                    </div>
+            </div> 
+         
+         <br>
+         <br>
+         <br>
+         <div class="form-group">
+                    
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter Intrest Rate in %</strong></span>
+                            <input type="number" name="intrest_rate" required="true" id="intrest_rate" class="form-control" placeholder="Enter intrest rate"> </input>
+                        </div>
+                    </div>
+                </div> 
+         
+         <br>
+         <br>
+         
+         <div class="form-group">
+                    
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter No Of Months</strong></span>
+                            <input type="number" name="months" required="true" id="months" class="form-control" placeholder="enter months"> </input>
+                        </div>
+                    </div>
+                </div> 
+         
+         <br>
+         <br>
+         
+         <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                        <input type="submit" name="sun"  id="sub" value="Submit" class="btn btn-primary">
+                        
+                    </div>
+          </div>
+         </form>
+         <br>
+         <br>
+         <div class="col-sm-6" >
+                    <table class="table table-advance" id="exm_table" style="border:1px solid;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S.No</th>
+                                <th class="text-center">Loan Amount</th>
+                                <th class="text-center">EMI</th>                                
+                                <th class="text-center sorting">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body" style="border:1px solid; text-align: center;">
+
+                    <tr>
+			          
+		            </tr>
+                </tbody>
+              </table>
+ </div>
+      </div>
+   </div>
+</div>
+<script>
+$('#sub').on("click",function(event){
+  var month= $('#months').val();
+  var intrest=$('#intrest_rate').val();
+  var loan=$('#rate').val();
+  //var cal=parseInt(100000*0.00833*Math.pow(1+0.00833,12)/(Math.pow(1+0.00833,12) - 1));
+  //var cal="";	
+  $('#table_body').html("");
+  var intrest_rate=intrest/(12*100);
+  var cal=Math.round(loan*intrest_rate*Math.pow(1+intrest_rate,month)/(Math.pow(1+intrest_rate,month) - 1));
+   var loan_amount=cal*month;
+  var opt=""
+  for(var i=1;i<=month;i++)
+  {
+          opt+="<tr><td>"+i+"</td><td>"+loan_amount+"</td><td>"+cal+"</td><td>"+parseInt(loan_amount-cal)+"</td></tr>"
+          loan_amount=parseInt(loan_amount-cal);
+  }
+  $('#table_body').append(opt)
+  event.preventDefault();
+});
+</script>

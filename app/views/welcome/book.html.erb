@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="box">
+        <div class="box-title">
+                <h3><i class="icon-reorder"></i>BOOK INFORMATION</h3>
+                <div class="box-tool"> <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a> </div>
+         </div>
+         <div class="box-content frms" >
+         <form method="get">
+           <div class="form-group">
+
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter Name</strong></span>
+                            <input type="text" name="name" required="true" id="name" class="form-control" placeholder="Enter intrest rate"> </input>
+                        </div>
+                    </div>
+            </div>
+
+         <br>
+         <br>
+         <br>
+         <div class="form-group">
+
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter Book Name</strong></span>
+                            <input type="text" name="book_name" required="true" id="book_name" class="form-control" placeholder="Enter intrest rate"> </input>
+                        </div>
+                    </div>
+                </div>
+
+         <br>
+         <br>
+
+         <div class="form-group">
+
+                    <div class="col-lg-5 controls">
+                        <div class="input-group"> <span class="input-group-addon"><i class="icon-user"></i><strong>Enter Book Amount</strong></span>
+                            <input type="text" name="price" required="true" id="price" class="form-control" placeholder="enter months"> </input>
+                        </div>
+                    </div>
+                </div>
+
+         <br>
+         <br>
+
+         <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2">
+                      <input type="hidden" name="hid" id="hid" value="1">
+                        <input type="submit" name="sun"  id="sub" value="Submit" class="btn btn-primary">
+
+                    </div>
+          </div>
+         </form>
+         <br>
+         <br>
+         <div class="col-sm-6" >
+                    <table class="table table-advance" id="table1" style="border:1px solid;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S.No</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Book Name</th>
+                                <th class="text-center sorting">Book Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body" style="border:1px solid; text-align: center;">
+
+                    <tr>
+
+		            </tr>
+                </tbody>
+              </table>
+ </div>
+      </div>
+   </div>
+</div>
+<script >
+
+$('#sub').on("click",function(){
+      var name=$('#name').val();
+	  var book_name=$('#book_name').val();
+	  var price=$('#price').val();
+	  var len=$('#hid').val();
+	   var rf=parseInt(len) + 1;
+
+	 // len=parseInt(len)
+	  alert(rf);
+      if(name !="" && book_name !="" && price !="" )
+	  {
+
+	      $("#table1").show();
+		  $('#hid').val(rf);
+		    var opt;
+			opt+="<tr><td>"+len+"</td> <td>"+name+"</td> <td>"+book_name+"</td><td>"+price+"</td></tr>";
+			$('#table1').append(opt);
+			$('#name').val('');
+			$('#book_name').val('');
+			$('#price').val('');
+		  return false;
+	  }
+});
+</script>

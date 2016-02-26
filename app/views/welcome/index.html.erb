@@ -1,0 +1,86 @@
+<!--<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<div align="center" class="col-md-6" >
+   
+    <form  method="get"> 
+     <h1>Incom Tax Calculation</h1>
+    <label>Enter your yearly salary:</label><input type="number" name="sal" id="salary" class="form-control" required></input>
+    <br>
+    <br>
+    <input type="submit" name="submit" id="sub" class="btn btn-primary" value="Submit"></input>
+   </form>
+   
+<div>
+<br>
+<div class="table-responsive" >
+                    <table class="table table-advance" id="exm_table" style="border:1px solid;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S.No</th>
+                                <th class="text-center">Salary</th>
+                                <th class="text-center">Tax</th>                                
+                                <th class="text-center sorting">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body" style="border:1px solid; text-align: center;">
+
+                    <tr>
+			          
+		            </tr>
+                </tbody>
+ </table>
+ </div>
+
+<script>
+ $('#sub').on("click",function(){
+     var salary=$('#salary').val();
+     var tax_number=salary-250000;
+     var cal=parseInt(100000*0.00833*Math.pow(1+0.00833,12)/(Math.pow(1+0.00833,12) - 1));
+             //var cal=calMath.pow(100000*0.00833*(1 + 0.00833)*12/((1 + 0.00833)*12 - 1));
+             //var cal=Math.pow(1+0.00833,2);
+             
+     alert(cal); 
+     var tax;
+     $('#table_body').html("");
+    if(salary !="")
+    {
+     if(salary <=250000)
+     {
+     	
+     	   opt="<tr><td>1</td><td>"+salary+"</td><td>00</td><td>"+salary+"</td></tr>";
+           $(exm_table).append(opt);
+     }
+     else if(salary >=250001 && salary <=500000)
+     {
+            //var tax_amount=salary-
+            tax=(tax_number)*10/100;
+            opt="<tr><td>1</td><td>"+salary+"</td><td>"+tax+"</td><td>"+parseInt(salary-tax)+"</td></tr>";
+            $(exm_table).append(opt);
+     }
+     else if(salary >=500001 && salary <=1000000)
+     {
+            tax=(tax_number)*20/100
+            opt="<tr><td>1</td><td>"+salary+"</td><td>"+tax+"</td><td>"+parseInt(salary-tax)+"</td></tr>";
+            $(exm_table).append(opt);
+     }
+     else if(salary >=1000001)
+     {
+     	    tax=(tax_number)*30/100
+     	    
+            opt="<tr><td>1</td><td>"+salary+"</td><td>"+tax+"</td><td>"+parseInt(salary-tax)+"</td></tr>";
+            $(exm_table).append(opt);
+           
+     }	
+    } 
+     return false;
+
+ });
+</script>
